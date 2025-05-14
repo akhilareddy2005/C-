@@ -1,0 +1,97 @@
+using System;
+
+public class CentimeterConverter
+{
+    public static void Main(string[] args)
+    {
+        // Main method to run the centimeter converter program.
+        Console.WriteLine("Centimeter Converter"); // Display a title.
+
+        while (true) // Use a loop to allow multiple conversions.
+        {
+            Console.Write("Enter length in centimeters: "); // Prompt the user for input.
+            string input = Console.ReadLine(); // Read the input as a string.
+
+            if (double.TryParse(input, out double centimeters)) // Safely convert the input to a double.
+            {
+                // Conversion logic:
+                double meters = centimeters / 100;  // Convert centimeters to meters.
+                double kilometers = centimeters / 100000; // Convert centimeters to kilometers.
+
+                // Display the results:
+                Console.WriteLine($"{centimeters} centimeters is equal to:");
+                Console.WriteLine($"{meters} meters");
+                Console.WriteLine($"{kilometers} kilometers");
+
+                Console.Write("Do you want to perform another conversion? (yes/no): "); // Ask for another conversion.
+                string continueInput = Console.ReadLine().ToLower(); // Read and normalize the input.
+
+                if (continueInput != "yes") // Check if the user wants to continue.
+                {
+                    break; // Exit the loop if the answer is not "yes".
+                }
+            }
+            else
+            {
+                // Handle invalid input:
+                Console.WriteLine("Invalid input. Please enter a valid number.");
+            }
+        }
+        Console.WriteLine("Exiting program."); // Inform the user that the program is ending.
+    }
+}
+
+/*
+Explanation:
+
+1.  Namespaces:
+    * The System namespace is imported to use classes like Console for input/output.
+
+2.  Class:
+    * The code is enclosed in a class named CentimeterConverter.  It's good practice to organize your code.
+
+3.  Main Method:
+    * The Main method is the entry point of the program.
+    * It displays a title and then enters a loop to perform conversions.
+
+4.  Input:
+    * The program prompts the user to enter a length in centimeters using Console.Write().
+    * Console.ReadLine() reads the user's input as a string.
+
+5.  Input Validation:
+    * double.TryParse() is used to safely convert the string input to a double.
+        * It returns true if the conversion is successful and stores the numeric value in the out parameter (centimeters).
+        * If the conversion fails (e.g., the user enters text), it returns false, and the program displays an error message.
+
+6.  Conversion Logic:
+     * The core conversion calculations are performed:
+        * Meters: centimeters are divided by 100.
+        * Kilometers: centimeters are divided by 100,000.
+
+7.  Output:
+    * The program displays the converted lengths in meters and kilometers using Console.WriteLine().  String interpolation ($"{variable}") is used to embed the values directly in the text.
+
+8.  Loop and Continuation:
+    * A while(true) loop allows the program to perform multiple conversions until the user decides to stop.
+    * The user is asked if they want to do another conversion.
+    * The input is converted to lowercase using .ToLower() to make the comparison case-insensitive.
+    * If the user enters "yes", the loop continues; otherwise, the break statement exits the loop.
+
+9.  Error Handling:
+    * If the user enters invalid input (non-numeric), the program displays an error message, and the loop continues, prompting for input again.
+
+Example Usage:
+
+    Centimeter Converter
+    Enter length in centimeters: 150
+    150 centimeters is equal to:
+    1.5 meters
+    0.0015 kilometers
+    Do you want to perform another conversion? (yes/no): yes
+    Enter length in centimeters: 23000
+    23000 centimeters is equal to:
+    230 meters
+    0.23 kilometers
+    Do you want to perform another conversion? (yes/no): no
+    Exiting program.
+*/
